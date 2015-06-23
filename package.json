@@ -1,0 +1,65 @@
+{
+  "name": "podcast",
+  "version": "1.0.0",
+  "description": "podcast app",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_PATH=\"./src\" node ./babel.server",
+    "test": "BABEL_JEST_STAGE=0 jest",
+    "localhost": "sleep 1; which open && open http://localhost:8000",
+    "browser": "sleep 2; concurrent 'npm run start'",
+    "build": "webpack --verbose --colors --display-error-details --config webpack.client.js",
+    "watch-client": "webpack --verbose --colors --display-error-details --config webpack.client-watch.js && webpack-dev-server --config webpack.client-watch.js",
+    "watch": "concurrent --kill-others 'npm run watch-client' 'npm run browser'"
+  },
+  "author": "Ben McMahen",
+  "license": "MIT",
+  "dependencies": {
+    "ascii-json": "^0.2.0",
+    "boom": "^2.8.0",
+    "confidence": "^1.1.0",
+    "css-loader": "^0.15.1",
+    "debug": "^2.2.0",
+    "good": "^6.1.4",
+    "good-console": "^5.0.2",
+    "good-loggly": "^1.0.0",
+    "hapi": "^8.6.1",
+    "piping": "^0.1.8",
+    "react": "^0.13.3",
+    "react-router": "^1.0.0-beta2",
+    "redux": "^0.12.0",
+    "style-loader": "^0.12.3"
+  },
+  "devDependencies": {
+    "babel": "^5.5.8",
+    "babel-core": "^5.5.8",
+    "babel-eslint": "^3.1.17",
+    "babel-jest": "^5.3.0",
+    "babel-loader": "^5.1.4",
+    "babel-runtime": "^5.5.8",
+    "concurrently": "^0.1.1",
+    "eslint": "^0.23.0",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "jest-cli": "^0.4.13",
+    "json-loader": "^0.5.2",
+    "node-libs-browser": "^0.5.2",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.11",
+    "webpack-dev-server": "^1.9.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "unmockedModulePathPatterns": [
+      "react"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
+  }
+}
