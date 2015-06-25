@@ -1,11 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'redux/react'
-import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 import * as userActions from '../../state/actions/user'
 
 if (__CLIENT__) {
   require('./index.css')
+  require('./images/heavy2.png')
 }
 
 

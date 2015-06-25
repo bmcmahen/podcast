@@ -21,10 +21,8 @@ export default function promiseMiddleware () {
             return doc
           }
         )
-      } else {
-        console.log('next actiohn', action)
-        return next(action)
       }
+      return next(action)
     }
     return recurse
   }

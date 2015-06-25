@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import { connect } from 'redux/react'
 
 @connect(state => {
@@ -6,6 +6,10 @@ import { connect } from 'redux/react'
 })
 
 export default class User extends React.Component {
+
+  static propTypes = {
+
+  }
 
   render () {
     const { user } = this.props

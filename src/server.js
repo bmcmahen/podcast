@@ -1,12 +1,9 @@
-'use strct'
-
 import {Server} from 'hapi'
 import Boom from 'boom'
 import config from './config'
-import injectScript from './util/inject'
 import Good from 'good'
-import GoodLoggly from 'good-loggly'
 import uiRender from './ui-server-render'
+import apiRoutes from './api'
 
 const server = new Server()
 
@@ -42,7 +39,7 @@ server.route({
   handler: (request, reply) => {
 
     // only respond to text/html requests
-    let type = request.headers['accept']
+    let type = request.headers.accept
     if (type && !~type.indexOf('text/html')) {
       return reply(Boom.notFound())
     }
@@ -51,6 +48,16 @@ server.route({
     uiRender(request, reply)
   }
 })
+
+/**
+ * API Routes
+ */
+
+server.route(apiRoutes)
+
+/**
+ * Register Plugins
+ */
 
 server.register([
   {

@@ -13,6 +13,28 @@ const host = process.env.NODE_ENV === 'production'
   ? null
   : '//localhost:8080'
 
+/**
+ * Render our HTML template with react html & data
+ * @param  {String} html
+ * @return {Object}
+ */
+
+function renderTemplate (html, preloaded = {}) {
+  let str = (
+    `<!doctype html>
+      <html lang="en-us">
+        <head>
+          <meta charset="utf-8">
+          <title>Podcaster</title>
+          <link rel="shortcut icon" href="/assets/favicon.ico">
+        </head>
+        <body>
+          <div id="react-root">${html}</div>
+        </body>
+      </html>`
+  )
+  return injectScript(str, preloaded, [`${host}/client.js`])
+}
 
 /**
  * Render our react routes on the server
@@ -41,7 +63,7 @@ export default function renderServer (request, reply) {
 
     if (transition.isCancelled) {
       // todo: include this as a queryparam
-      let redirectPath = transition.state && (transition.state.nextPathname || '/user')
+      // let redirectPath = transition.state && (transition.state.nextPathname || '/user')
       let nextPath = transition.redirectInfo.pathname
       return reply.redirect(nextPath)
     }
@@ -54,36 +76,18 @@ export default function renderServer (request, reply) {
       }))
       .then(() => {
         let stateToTransfer = redux.getState()
-        let html = React.renderToString(<Root routerProps={routerState} redux={redux} />)
+        let html = React.renderToString(
+          <Root
+            routerProps={routerState}
+            redux={redux}
+          />
+        )
         return reply(renderTemplate(html, stateToTransfer))
       })
-      .catch(err => {
-        return reply(Boom.wrap(err))
+      .catch(error => {
+        return reply(Boom.wrap(error))
       })
 
 
   })
-}
-
-/**
- * Render our HTML template with react html & data
- * @param  {String} html
- * @return {Object}
- */
-
-function renderTemplate(html, preloaded = {}) {
-  let str = (
-    `<!doctype html>
-      <html lang="en-us">
-        <head>
-          <meta charset="utf-8">
-          <title>Podcaster</title>
-          <link rel="shortcut icon" href="/assets/favicon.ico">
-        </head>
-        <body>
-          <div id="react-root">${html}</div>
-        </body>
-      </html>`
-  )
-  return injectScript(str, preloaded, [`${host}/client.js`])
 }

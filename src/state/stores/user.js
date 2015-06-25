@@ -7,12 +7,11 @@ const initialState = {
 
 const actionsMap = {
   [constants.FETCH_USER]: (state, action) => {
-    console.log(action)
     return action.user
   },
   [constants.INCREMENT_SUCCESS]: (state, action) => {
     return {
-      counter : action.result + state.counter
+      counter: action.result + state.counter
     }
   },
   [constants.TEST_PROMISE]: (state, action) => {
@@ -21,7 +20,6 @@ const actionsMap = {
 }
 
 export default function user (state = initialState, action) {
-  console.log('hello', state, action)
   const reduceFn = actionsMap[action.type]
   if (!reduceFn) {
     return state

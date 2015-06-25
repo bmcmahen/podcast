@@ -2,11 +2,11 @@ import * as constants from '../constants'
 
 export function fetchUser (username) {
   return (dispatch) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         dispatch({
           type: constants.FETCH_USER,
-          user: { name : username }
+          user: { name: username }
         })
         resolve()
       }, 2000)
@@ -28,7 +28,7 @@ export function increment (num) {
 
   return (dispatch) => {
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       let result = {
         type: constants.INCREMENT_SUCCESS,
         result: num
@@ -45,11 +45,11 @@ export function increment (num) {
 
 
 export function testPromise () {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         type: constants.TEST_PROMISE,
-        user: { name : 'bento' }
+        user: { name: 'bento' }
       })
     }, 3000)
   })

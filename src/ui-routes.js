@@ -1,8 +1,6 @@
 import Application from './components/ui-Application'
 import Home from './components/ui-Home'
 import User from './components/ui-User'
-import {Route} from 'react-router'
-import React from 'react'
 import requireAuth from './components/transitions/require-auth'
 
 /**

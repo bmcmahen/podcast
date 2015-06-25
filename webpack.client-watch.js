@@ -25,7 +25,8 @@ config.module = {
 	loaders: [
 		{include: /\.css$/, loader: "style-loader!css-loader" },
 		{include: /\.json$/, loaders: ["json-loader"]},
-		{include: /\.js$/, loaders: ["react-hot", "babel-loader?stage=0&optional=runtime"], exclude: /node_modules/}
+		{include: /\.js$/, loaders: ["react-hot", "babel-loader?stage=0&optional=runtime"], exclude: /node_modules/},
+		{include: /\.(png|jpg)$/, loader: 'file-loader?name=images/[name].[ext]' }
 	]
 };
 

@@ -1,11 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Redirect, Router, Route } from 'react-router'
+import { Router } from 'react-router'
 import { Provider } from 'redux/react'
-import * as stores from '../../state/stores'
-import debug from 'debug'
 import routes from '../../ui-routes'
-
-const log = debug('app:logger')
 
 /**
  * Create Root Component that wraps react-router,
